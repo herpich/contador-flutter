@@ -13,11 +13,20 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _numAlunos = 0; //_ para indicar que é acessível apenas aqui dentro
+  String _infoText = "Pode Entrar!";
 
   void _changeAlunos(int delta) {
     setState(() {
       //  manda atualizar a tela (só a parte modificada do código)
       _numAlunos += delta; //executar o incremento
+
+      if (_numAlunos < 0) {
+        _infoText = "Mundo invertido?";
+      } else if (_numAlunos <= 10) {
+        _infoText = "Pode Entrar!";
+      } else {
+        _infoText = "Lotado!!!";
+      }
     });
   }
 
@@ -84,7 +93,7 @@ class _HomeState extends State<Home> {
                 ]),
             Text(
               // inclua um outro widget de texto
-              "Pode Entrar!", // adicione um texto
+              _infoText, // adicione um texto
               style: TextStyle(
                   //configure o estilo do texto
                   color: Colors.white, // cor do texto
